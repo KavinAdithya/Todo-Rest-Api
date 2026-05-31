@@ -1,4 +1,4 @@
-package com.techcrack.todoApi.entity;
+package com.techcrack.todoApi.model;
 
 import java.util.List;
 import java.util.Objects;

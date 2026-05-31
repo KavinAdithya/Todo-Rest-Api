@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techcrack.todoApi.dtos.CreateTodoRequestDTO;
 import com.techcrack.todoApi.dtos.TodoResponseDTO;
 import com.techcrack.todoApi.dtos.UpdateTodoRequestDTO;
-import com.techcrack.todoApi.entity.Todo;
+import com.techcrack.todoApi.model.Todo;
 import com.techcrack.todoApi.service.TodoService;
-import com.techcrack.todoApi.service.utilis.ApiResponseEntity;
-import com.techcrack.todoApi.service.utilis.TodoHelper;
+import com.techcrack.todoApi.utilis.ApiResponseEntity;
+import com.techcrack.todoApi.utilis.TodoHelper;
 
 @RestController
 @RequestMapping("/users")

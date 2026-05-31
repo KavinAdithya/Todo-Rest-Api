@@ -1,4 +1,4 @@
-package com.techcrack.todoApi.service.utilis;
+package com.techcrack.todoApi.utilis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.techcrack.todoApi.dtos.CreateTodoRequestDTO;
 import com.techcrack.todoApi.dtos.TodoResponseDTO;
 import com.techcrack.todoApi.dtos.UpdateTodoRequestDTO;
-import com.techcrack.todoApi.entity.Todo;
+import com.techcrack.todoApi.model.Todo;
 
 @Component
 public class TodoHelper {

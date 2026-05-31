@@ -1,21 +1,23 @@
 package com.techcrack.todoApi.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.techcrack.todoApi.entity.User;
+import com.techcrack.todoApi.model.User;
 import com.techcrack.todoApi.repository.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService {
 	private final UserRepository userRepo;
 	private final PasswordEncoder passwordEncoder;
-	
-	public UserService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+	private final AuthenticationManager authManager;
+
+	public UserService(UserRepository userRepo, AuthenticationManager authManager, PasswordEncoder passwordEncoder) {
 		this.userRepo = userRepo;
+		this.authManager = authManager;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
@@ -35,17 +37,14 @@ public class UserService implements UserDetailsService{
 		return userRepo.save(user);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		User user = userRepo.findByUsername(username)
-							.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-		
-		return org.springframework.security
-                .core.userdetails.User
-                .builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
+	public String verify(User user) {
+		Authentication authentication = authManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						user.getUsername(), user.getPassword()));
+		if (authentication.isAuthenticated()) return "success";
+
+		return "Failed";
 	}
+
+
 }

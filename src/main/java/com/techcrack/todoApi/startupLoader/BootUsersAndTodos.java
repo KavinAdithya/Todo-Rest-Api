@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.techcrack.todoApi.entity.Todo;
-import com.techcrack.todoApi.entity.User;
+import com.techcrack.todoApi.model.Todo;
+import com.techcrack.todoApi.model.User;
 import com.techcrack.todoApi.service.TodoService;
 import com.techcrack.todoApi.service.UserService;
 

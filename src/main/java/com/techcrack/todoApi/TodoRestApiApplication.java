@@ -12,9 +12,4 @@ public class TodoRestApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TodoRestApiApplication.class, args);
 	}
-	
-	@Bean
-	public PasswordEncoder passwordEncode() {
-		return new BCryptPasswordEncoder();
-	}
 }

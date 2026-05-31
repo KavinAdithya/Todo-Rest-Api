@@ -3,10 +3,12 @@ package com.techcrack.todoApi.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.techcrack.todoApi.service.utilis.ApiResponseEntity;
+import com.techcrack.todoApi.utilis.ApiResponseEntity;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,15 +30,24 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(UnauthorizedAccessException.class)
-	public ResponseEntity<ApiResponseEntity<Object>> handleUnauthorizedAcessException(UnauthorizedAccessException ex) {
+	public ResponseEntity<ApiResponseEntity<Object>> handleUnauthorizedAccessException(UnauthorizedAccessException ex) {
 		return ResponseEntity
 					.status(HttpStatus.UNAUTHORIZED)
 					.body(ApiResponseEntity
 							.failure(ex.getMessage()));
 	}
+
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<ApiResponseEntity<Object>> handleBadCredentialException(BadCredentialsException ex) {
+		ex.printStackTrace();
+		return ResponseEntity
+				.status(HttpStatus.UNAUTHORIZED)
+				.body(ApiResponseEntity
+						.failure(ex.getMessage()  + "Testing"));
+	}
 	
 	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<ApiResponseEntity<Object>> handleAccessDeniedExceptio(AccessDeniedException ex) {
+	public ResponseEntity<ApiResponseEntity<Object>> handleAccessDeniedException(AccessDeniedException ex) {
 		return ResponseEntity
 					.status(HttpStatus.FORBIDDEN)
 					.body(ApiResponseEntity
