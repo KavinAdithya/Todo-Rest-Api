@@ -1,6 +1,6 @@
 package com.techcrack.todoApi.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.techcrack.todoApi.jwtConfig.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,11 +14,13 @@ public class UserService {
 	private final UserRepository userRepo;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authManager;
+	private final JwtService jwtService;
 
-	public UserService(UserRepository userRepo, AuthenticationManager authManager, PasswordEncoder passwordEncoder) {
+	public UserService(UserRepository userRepo, AuthenticationManager authManager, PasswordEncoder passwordEncoder, JwtService jwtService) {
 		this.userRepo = userRepo;
 		this.authManager = authManager;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtService = jwtService;
 	}
 	
 	public User getUserByUsername(String username) {
@@ -41,7 +43,8 @@ public class UserService {
 		Authentication authentication = authManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						user.getUsername(), user.getPassword()));
-		if (authentication.isAuthenticated()) return "success";
+		if (authentication.isAuthenticated())
+			return jwtService.generateToken(user.getUsername());
 
 		return "Failed";
 	}
