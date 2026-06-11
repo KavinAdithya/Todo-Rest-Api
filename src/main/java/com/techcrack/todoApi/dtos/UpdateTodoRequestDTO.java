@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class UpdateTodoRequestDTO {
 	private Long id;
 	
-	private String todoTitle;
+	private String title;
 
 	private String description;
 
@@ -25,12 +25,12 @@ public class UpdateTodoRequestDTO {
 		super();
 	}
 
-	public String getTodoTitle() {
-		return todoTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTodoTitle(String todoTitle) {
-		this.todoTitle = todoTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {

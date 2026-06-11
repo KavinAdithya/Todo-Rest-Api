@@ -1,7 +1,9 @@
 package com.techcrack.todoApi.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import com.techcrack.todoApi.exception.InvalidTodoDataException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +26,22 @@ public class TodoService {
 	@Transactional
 	public Todo createTodo(String username, Todo todo) {
 		User user = userService.getUserByUsername(username);
-		
+
+		if (!isValidTodo(todo)) {
+			throw new InvalidTodoDataException("Ensure title and description not null . Target Date must be in future.");
+		}
 		todo.setUser(user);
 		
 		return todoRepo.save(todo);
 	}
-	
+
+	private boolean isValidTodo(Todo todo) {
+		return todo.getTodoTitle() != null &&
+				todo.getDescription() != null &&
+				todo.getDueDate() != null &&
+				todo.getDueDate().isAfter(LocalDate.now());
+	}
+
 	public List<Todo> getAllTodosByUsername(String username) {
 		return todoRepo.findByUserUsername(username);
 	}
@@ -41,6 +53,9 @@ public class TodoService {
 	
 	@Transactional
 	public Todo updateTodo(Todo todo, String username) {
+		if (!isValidTodo(todo)) {
+			throw new InvalidTodoDataException("Ensure title and description not null . Target Date must be in future.");
+		}
 		return copyTodoAndUpdate(todo, username);
 	}
 	

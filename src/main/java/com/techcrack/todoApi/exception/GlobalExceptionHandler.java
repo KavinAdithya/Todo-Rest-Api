@@ -61,4 +61,12 @@ public class GlobalExceptionHandler {
 					.body(ApiResponseEntity
 							.failure("Something went wrong ! " + ex.getMessage()));
 	}
+
+	@ExceptionHandler(InvalidTodoDataException.class)
+	public ResponseEntity<ApiResponseEntity<Object>> handleInvalidTodoDataException(InvalidTodoDataException ex) {
+		return ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(ApiResponseEntity
+						.failure("Invalid Todo Data ! " + ex.getMessage()));
+	}
 }

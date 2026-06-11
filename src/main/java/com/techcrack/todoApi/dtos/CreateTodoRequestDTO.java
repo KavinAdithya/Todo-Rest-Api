@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class CreateTodoRequestDTO {
 	
-	private String todoTitle;
+	private String title;
 
 	private String description;
 
@@ -17,12 +17,12 @@ public class CreateTodoRequestDTO {
 		super();
 	}
 
-	public String getTodoTitle() {
-		return todoTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTodoTitle(String todoTitle) {
-		this.todoTitle = todoTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -52,7 +52,7 @@ public class CreateTodoRequestDTO {
 	
 	@Override
 	public String toString() {
-		return "CreateTodoRequestDTO [todoTitle=" + todoTitle + ", description=" + description + ", dueDate=" + dueDate
+		return "CreateTodoRequestDTO [todoTitle=" + title + ", description=" + description + ", dueDate=" + dueDate
 				+ ", completed=" + completed + "]";
 	}
 	

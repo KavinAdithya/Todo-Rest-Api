@@ -67,20 +67,6 @@ public class SecurityConfiguration {
 		return config.getAuthenticationManager();
 	}
 
-
-	@Bean
-	public WebMvcConfigurer crossOriginConfig() {
-		return new WebMvcConfigurer() {
-			public void addCorsMappings(@NonNull CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:3000")
-						.allowedMethods("*")
-						.allowedHeaders("*")
-						.allowCredentials(true);;
-			}
-		};
-	}
-
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 

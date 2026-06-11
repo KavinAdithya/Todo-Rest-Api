@@ -17,7 +17,7 @@ public class TodoHelper {
 		
 		todo.setDescription(requestTodo.getDescription());
 		todo.setCompleted(requestTodo.isCompleted());
-		todo.setTodoTitle(requestTodo.getTodoTitle());
+		todo.setTodoTitle(requestTodo.getTitle());
 		todo.setDueDate(requestTodo.getDueDate());
 		
 		return todo;
@@ -29,7 +29,7 @@ public class TodoHelper {
 		todo.setId(requestTodo.getId());
 		todo.setDescription(requestTodo.getDescription());
 		todo.setCompleted(requestTodo.isCompleted());
-		todo.setTodoTitle(requestTodo.getTodoTitle());
+		todo.setTodoTitle(requestTodo.getTitle());
 		todo.setDueDate(requestTodo.getDueDate());
 		
 		return todo;
@@ -41,7 +41,7 @@ public class TodoHelper {
 		response.setId(todo.getId());
 		response.setDescription(todo.getDescription());
 		response.setDueDate(todo.getDueDate());
-		response.setTodoTitle(todo.getTodoTitle());
+		response.setTitle(todo.getTodoTitle());
 		response.setCompleted(todo.isCompleted());
 		response.setUsername(todo.getUser().getUsername());
 		
