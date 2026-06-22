@@ -13,7 +13,7 @@ import com.techcrack.todoApi.service.TodoService;
 import com.techcrack.todoApi.service.UserService;
 
 @Component
-public class BootUsersAndTodos implements CommandLineRunner {
+public class 	BootUsersAndTodos implements CommandLineRunner {
 	
 	private final UserService userService;
 	private final TodoService todoService;
